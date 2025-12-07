@@ -1,287 +1,619 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monika Jangir – Interactive Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Monika Jangir — Gen-Z Interactive Resume</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body {
-      background: #0d0f1a;
-      color: #fff;
-      overflow-x: hidden;
+    :root{
+      --bg:#0b0c12;
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.06);
+      --accent1: #7e2cff; /* purple */
+      --accent2: #00e6c3; /* teal */
+      --accent3: #4df2ff; /* cyan */
+      --muted: rgba(255,255,255,0.7);
+      --glass-border: rgba(255,255,255,0.08);
+      --radius: 14px;
+      --max-width: 1200px;
     }
 
-    /* Navigation */
-    nav {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(10px);
-      background: rgba(0,0,0,0.4);
-      z-index: 1000;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,Arial;
+      background:
+        radial-gradient(1200px 600px at -10% 10%, rgba(126,44,255,0.07), transparent 6%),
+        radial-gradient(900px 400px at 120% 90%, rgba(0,230,195,0.04), transparent 6%),
+        var(--bg);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+      line-height:1.45;
+      padding-top:72px; /* nav height */
     }
 
-    nav .logo {
-      font-size: 26px;
-      font-weight: 700;
-      background: linear-gradient(45deg, #7e2cff, #00e6c3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* ---------- NAV ---------- */
+    nav{
+      position:fixed;
+      top:10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 40px);
+      max-width:var(--max-width);
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:999px;
+      padding:10px 16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      box-shadow:0 6px 30px rgba(0,0,0,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(8px) saturate(120%);
+      z-index:999;
     }
 
-    nav ul {
-      display: flex;
-      gap: 30px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
-    nav ul li {
-      list-style: none;
+    .logo-sq{
+      width:44px;height:44px;border-radius:10px;
+      background: linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:#041; /* tiny contrast for icon */
+      box-shadow:0 6px 22px rgba(126,44,255,0.18), inset 0 -6px 20px rgba(255,255,255,0.03);
     }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 10px;
-      transition: 0.3s;
+    .brand h4{font-size:16px;letter-spacing:0.2px}
+    .brand p{font-size:11px;color:var(--muted);margin-top:2px}
+
+    .nav-links{
+      display:flex;
+      gap:8px;
+      align-items:center;
     }
 
-    nav ul li a:hover, nav ul li a.active {
-      background: #7e2cff;
-      box-shadow: 0 0 15px #7e2cff;
+    .nav-links a{
+      color:rgba(255,255,255,0.9);
+      text-decoration:none;
+      padding:8px 14px;border-radius:999px;
+      font-weight:600;font-size:14px;
+      transition:all .22s ease;
+      border:1px solid transparent;
     }
+    .nav-links a:hover{ transform:translateY(-3px); box-shadow:0 8px 22px rgba(0,0,0,0.6)}
+    .nav-links a.active{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#020202; box-shadow:0 8px 30px rgba(126,44,255,0.16) }
 
-    /* Sections */
-    section {
-      padding: 100px 70px;
-      min-height: 100vh;
+    .socials{display:flex;gap:10px;align-items:center}
+    .icon-btn{
+      width:38px;height:38px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      transition:all .2s;
     }
+    .icon-btn:hover{ transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,0,0,0.6) }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-    }
+    /* ---------- MAIN LAYOUT ---------- */
+    .container{ max-width:var(--max-width); margin:40px auto; padding:0 18px; }
 
-    .hero-text h1 {
-      font-size: 60px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #7e2cff, #00e6c3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap:30px;
+  align-items:center;
+  min-height:66vh;
+  margin-bottom:30px;
+}
+@media (max-width:980px){ .hero{ grid-template-columns:1fr; padding-top:10px } }
 
-    .hero-text p {
-      font-size: 20px;
-      max-width: 450px;
-      opacity: 0.9;
-    }
+.hero-left{
+  padding:30px;border-radius:var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border); backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  position:relative; overflow:hidden;
+}
 
-    .cta-btn {
-      margin-top: 20px;
-      padding: 12px 30px;
-      background: #7e2cff;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 18px;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-      display: inline-block;
-    }
+.greeting{
+  display:flex;gap:16px;align-items:center;
+}
+.greeting .name-badge{
+  font-size:28px;font-weight:800;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent;
+}
+.greeting .subtitle{ color:var(--muted); font-weight:600; font-size:14px; margin-top:4px }
 
-    .cta-btn:hover {
-      box-shadow: 0 0 20px #7e2cff;
-      transform: scale(1.08);
-    }
+.typewriter{
+  margin-top:12px;color:var(--muted);font-weight:600;font-size:15px;
+  height:26px; /* reserve height */
+}
 
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 20px;
-    }
+/* CTA */
+.cta-row{ margin-top:18px; display:flex; gap:12px; flex-wrap:wrap }
+.btn-primary{
+  padding:12px 20px;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  color:#030303;font-weight:700;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(126,44,255,0.14);
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.btn-primary:hover{ transform:translateY(-6px); box-shadow:0 18px 50px rgba(126,44,255,0.18) }
 
-    .skill-box {
-      padding: 20px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 14px;
-      text-align: center;
-      font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.3s;
-    }
+.btn-outline{
+  padding:10px 18px;border-radius:10px;border:1px solid rgba(255,255,255,0.08); background:transparent;color:var(--muted);
+}
+.btn-outline:hover{ transform:translateY(-4px); background:rgba(255,255,255,0.02) }
 
-    .skill-box:hover {
-      background: #00e6c3;
-      color: #000;
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #00e6c3;
-    }
+/* Right card */
+.hero-right{
+  display:flex;flex-direction:column;gap:16px;align-items:center;
+}
+.avatar{
+  width:100%; max-width:320px; height:320px; border-radius:18px; overflow:hidden;
+  background:linear-gradient(135deg,#080612, #0f1224);
+  border:1px solid var(--glass-border); padding:14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 8px 20px rgba(126,44,255,0.06) ;
+  position:relative;
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; border-radius:10px; transform:translateZ(0); transition:transform .6s cubic-bezier(.2,.9,.3,1) }
 
-    /* Contact */
-    .contact-box {
-      max-width: 550px;
-      background: rgba(255,255,255,0.06);
-      padding: 30px;
-      border-radius: 16px;
-      backdrop-filter: blur(15px);
-    }
+/* floating badges */
+.badges{ position:absolute; left:18px; top:18px; display:flex; gap:8px; }
+.badge{
+  padding:8px 12px; border-radius:999px; font-weight:700; font-size:12px;
+  background:linear-gradient(90deg,var(--accent3), rgba(255,255,255,0.06));
+  color:#021; box-shadow:0 6px 18px rgba(0,0,0,0.4);
+}
 
-    .contact-box input,
-    .contact-box textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.2);
-      color: white;
-    }
+/* ---------- SECTIONS ---------- */
+.section-title{
+  font-size:24px; margin-bottom:18px;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent;
+}
 
-    .contact-box button {
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #7e2cff;
-      border: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 600;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+/* Skills grid */
+.grid {
+  display:grid; gap:18px;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width:880px){ .grid{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:520px){ .grid{ grid-template-columns:repeat(1,1fr) } }
 
-    .contact-box button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #7e2cff;
-    }
+.card{
+  background:var(--card); border-radius:12px; padding:16px; border:1px solid var(--glass-border);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.card:hover{ transform:translateY(-10px); box-shadow:0 18px 50px rgba(0,0,0,0.6) }
 
-  </style>
+/* skill bars */
+.skill-item{ display:flex; flex-direction:column; gap:8px }
+.skill-name{ display:flex; justify-content:space-between; font-weight:700; font-size:13px }
+.skill-bar{ height:10px; background: rgba(255,255,255,0.06); border-radius:999px; overflow:hidden }
+.skill-bar > i{ display:block; height:100%; background:linear-gradient(90deg,var(--accent1),var(--accent2)); border-radius:999px; transition:width .9s cubic-bezier(.2,.9,.3,1) }
+
+/* Projects cards */
+.project-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px }
+@media (max-width:880px){ .project-grid{ grid-template-columns:1fr } }
+
+.project-card{
+  display:flex; gap:14px; align-items:flex-start; padding:16px; border-radius:12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+}
+.project-thumb{ width:86px; height:86px; border-radius:10px; overflow:hidden; flex:0 0 86px }
+.project-thumb img{ width:100%; height:100%; object-fit:cover }
+.project-info h4{ margin-bottom:6px }
+.project-info p{ color:var(--muted); font-size:14px }
+
+/* timeline */
+.timeline{ border-left:3px solid rgba(255,255,255,0.03); padding-left:20px }
+.timeline-item{ position:relative; margin-bottom:20px; padding-left:18px }
+.timeline-item::before{
+  content:''; position:absolute; left:-30px; top:4px; width:14px; height:14px; border-radius:50%;
+  background: linear-gradient(90deg,var(--accent1),var(--accent2)); box-shadow:0 6px 20px rgba(126,44,255,0.18);
+}
+
+/* Certs */
+.cert-grid{ display:flex; gap:12px; flex-wrap:wrap }
+.cert{ padding:10px 12px; border-radius:10px; background:rgba(255,255,255,0.03); font-weight:600; font-size:13px }
+
+/* Contact */
+.contact-form{ display:grid; gap:10px; max-width:680px }
+.input{ padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff }
+.input::placeholder{ color:rgba(255,255,255,0.45) }
+.submit{ padding:12px; border-radius:10px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); font-weight:700; border:none; color:#020202; cursor:pointer; }
+
+/* footer */
+.footer{ margin-top:40px; text-align:center; color:rgba(255,255,255,0.6); font-size:14px; padding:30px 0 }
+
+/* small helpers */
+.kv{ color:var(--muted); font-size:13px }
+.small{ font-size:13px; color:var(--muted) }
+
+/* ANIMATIONS */
+.fade-up{ opacity:0; transform:translateY(18px); transition:all .6s cubic-bezier(.2,.9,.3,1) }
+.fade-up.show{ opacity:1; transform:none }
+.tilt{ transform: perspective(900px) translateZ(0) }
+    </style>
 </head>
-
 <body>
 
+  <!-- NAV -->
   <nav>
-    <div class="logo">Monika</div>
-    <ul>
-      <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HOME -->
-  <section id="home" class="hero">
-    <div class="hero-text">
-      <h1>Hello, I'm Monika</h1>
-      <p>Cybersecurity Enthusiast • Web Developer • Malware Analysis Learner • Software Engineer</p>
-      <a href="#contact" class="cta-btn">Contact Me</a>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-box">HTML</div>
-      <div class="skill-box">CSS</div>
-      <div class="skill-box">JavaScript</div>
-      <div class="skill-box">React</div>
-      <div class="skill-box">Node.js</div>
-      <div class="skill-box">Python</div>
-      <div class="skill-box">C</div>
-      <div class="skill-box">Java</div>
-      <div class="skill-box">Cybersecurity</div>
-      <div class="skill-box">Malware Analysis</div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <div class="contact-box">
-      <input type="text" placeholder="Your Name" />
-      <input type="email" placeholder="Your Email" />
-      <textarea rows="5" placeholder="Your Message"></textarea>
-      <button>Send Message</button>
-    </div>
-  </section>
-
-  
-  <!-- Hero Additions -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="glow-title">Hi, I'm <span>Monika Jangir</span></h1>
-      <p class="subtitle">Cybersecurity • Developer • Innovator</p>
-      <div class="hero-buttons">
-        <a href="#about" class="btn">Explore More</a>
-        <a href="#contact" class="btn btn-alt">Contact Me</a>
+    <div class="brand">
+      <div class="logo-sq">MJ</div>
+      <div>
+        <h4>Monika Jangir</h4>
+        <p style="margin-top:2px;font-size:12px;color:rgba(255,255,255,0.7)">Cybersecurity • Web Dev</p>
       </div>
     </div>
-  </section>
 
-  <style>
-    .hero{
-      height:60vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:20px;
-      background:linear-gradient(135deg,#080a12,#101426,#1a1f35);
-      border-bottom:1px solid rgba(255,255,255,0.08);
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="socials" style="margin-left:18px">
+        <a class="icon-btn" href="#" title="GitHub" aria-label="GitHub">
+          <!-- simple GitHub svg -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path fill="currentColor" d="M12 .5a12 12 0 00-3.79 23.41c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.73.08-.73 1.22.08 1.86 1.25 1.86 1.25 1.08 1.86 2.83 1.32 3.52 1.01.11-.78.42-1.32.76-1.62-2.66-.3-5.46-1.33-5.46-5.92 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.46 11.46 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.6-2.8 5.61-5.47 5.91.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 .5z"/></svg>
+        </a>
+        <a class="icon-btn" href="#" title="LinkedIn" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 11.02 0zM3 8.98h3.98V21H3zM9.47 9h3.82v1.61h.05c.53-.99 1.82-2.03 3.74-2.03 4 0 4.74 2.63 4.74 6.05V21h-3.98v-5.1c0-1.22-.02-2.8-1.7-2.8-1.7 0-1.96 1.33-1.96 2.72V21H9.47z"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO / HOME -->
+    <section id="home" class="hero" aria-label="Home">
+      <div class="hero-left card tilt" data-tilt>
+        <div class="greeting">
+          <div style="display:flex;flex-direction:column">
+            <div class="name-badge">Hello, I'm <span style="display:inline-block;margin-left:6px;color:var(--accent3)">Monika</span></div>
+            <div class="subtitle">Cybersecurity • Web Developer • Malware Analyst</div>
+          </div>
+        </div>
+
+        <div class="typewriter" id="typewriter">Secure apps • Malware analysis • Backend & UI</div>
+
+        <div style="margin-top:16px" class="kv">I build secure and beautiful interfaces, learn malware analysis, and ship production-ready code. Current: SDE Intern — Bluestock.</div>
+
+        <div class="cta-row">
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+          <a class="btn-outline" href="#projects">See Projects</a>
+          <a class="btn-outline" href="javascript:void(0)" onclick="downloadResume()">Download CV</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="kv">📍 Gurugram, India</div>
+          <div class="kv">🎓 B.Tech CSE (Cyber)</div>
+          <div class="kv">📧 monika@example.com</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="avatar tilt" data-tilt>
+          <div class="badges">
+            <div class="badge">Open to work</div>
+            <div class="badge">8.5 CGPA</div>
+          </div>
+          <!-- replace with your real image -->
+          <img src="https://via.placeholder.com/600x600.png?text=Monika+Jangir" alt="Monika Jangir" id="profileImg">
+        </div>
+
+        <div style="display:flex;gap:10px;width:100%">
+          <div class="card" style="flex:1">
+            <div class="small">Top Skills</div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <span class="cert">React</span>
+              <span class="cert">Python</span>
+              <span class="cert">Node.js</span>
+              <span class="cert">Malware</span>
+            </div>
+          </div>
+
+          <div class="card" style="width:150px;display:flex;flex-direction:column;justify-content:center;align-items:center">
+            <div style="font-weight:800;font-size:18px">3+</div>
+            <div class="small">Internships</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="fade-up" aria-label="About">
+      <h3 class="section-title">About Me</h3>
+      <div class="card">
+        <p class="small">I am Monika — a B.Tech student in Computer Science (Cyber) with a passion for building secure web applications and studying malware behavior. I enjoy full-stack development, security research, and making polished, Gen-Z friendly UI. I have experience with React, Node.js, Python and security tools like Wireshark and Burp in entry-level capacity.</p>
+        <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap">
+          <div class="kv"><strong>Education:</strong> B.Tech CSE (Cyber) — Gurugram University</div>
+          <div class="kv"><strong>Certs:</strong> ISC2, ISRO IIRS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="fade-up">
+      <h3 class="section-title">Skills & Proficiency</h3>
+      <div class="grid">
+        <div class="card skill-item">
+          <div class="skill-name"><span>HTML & CSS</span><span>90%</span></div>
+          <div class="skill-bar"><i style="width:90%"></i></div>
+        </div>
+
+        <div class="card skill-item">
+          <div class="skill-name"><span>JavaScript</span><span>85%</span></div>
+          <div class="skill-bar"><i style="width:85%"></i></div>
+        </div>
+
+        <div class="card skill-item">
+          <div class="skill-name"><span>React</span><span>80%</span></div>
+          <div class="skill-bar"><i style="width:80%"></i></div>
+        </div>
+
+        <div class="card skill-item">
+          <div class="skill-name"><span>Python</span><span>78%</span></div>
+          <div class="skill-bar"><i style="width:78%"></i></div>
+        </div>
+
+        <div class="card skill-item">
+          <div class="skill-name"><span>Cybersecurity</span><span>70%</span></div>
+          <div class="skill-bar"><i style="width:70%"></i></div>
+        </div>
+
+        <div class="card skill-item">
+          <div class="skill-name"><span>Malware Analysis</span><span>65%</span></div>
+          <div class="skill-bar"><i style="width:65%"></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="fade-up">
+      <h3 class="section-title">Selected Projects</h3>
+      <div class="project-grid">
+        <article class="project-card tilt" data-tilt>
+          <div class="project-thumb"><img src="https://via.placeholder.com/160x160.png?text=BiteBuddy" alt="BiteBuddy"></div>
+          <div class="project-info">
+            <h4>BiteBuddy — AI Food Recommender</h4>
+            <p>Full-stack app with recommendation engine, community features, and AR dish previews. Built with React & Node.</p>
+          </div>
+        </article>
+
+        <article class="project-card tilt" data-tilt>
+          <div class="project-thumb"><img src="https://via.placeholder.com/160x160.png?text=Encrypted" alt="Encrypted"></div>
+          <div class="project-info">
+            <h4>Encrypted Messaging</h4>
+            <p>Secure messaging prototype with end-to-end encryption and a friendly UI for mobile & web.</p>
+          </div>
+        </article>
+
+        <article class="project-card tilt" data-tilt>
+          <div class="project-thumb"><img src="https://via.placeholder.com/160x160.png?text=MindMapple" alt="MindMapple"></div>
+          <div class="project-info">
+            <h4>MindMapple — Smart Notes</h4>
+            <p>Note-taking web app with streaks, auto-organization and AI assistance for studying & productivity.</p>
+          </div>
+        </article>
+
+        <article class="project-card tilt" data-tilt>
+          <div class="project-thumb"><img src="https://via.placeholder.com/160x160.png?text=Portfolio" alt="Portfolio"></div>
+          <div class="project-info">
+            <h4>Interactive Portfolio</h4>
+            <p>Modern Gen-Z style portfolio (this page!). Built with HTML/CSS and progressive UX patterns.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & TIMELINE -->
+    <section id="experience" class="fade-up">
+      <h3 class="section-title">Experience & Timeline</h3>
+      <div class="card timeline">
+        <div class="timeline-item">
+          <div style="font-weight:800">Bluestock — SDE Intern</div>
+          <div class="small">May 2025 — Aug 2025</div>
+          <div class="kv">Worked on backend APIs, optimizations and secure coding practices.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div style="font-weight:800">Muskurahat Foundation — Marketing Intern</div>
+          <div class="small">Mar 2024 — May 2024</div>
+          <div class="kv">Handled outreach, campaigns and content strategy.</div>
+        </div>
+
+        <div class="timeline-item">
+          <div style="font-weight:800">Bharat Intern — Web Developer</div>
+          <div class="small">Jun 2023 — Jul 2023</div>
+          <div class="kv">Built responsive web UIs and small interactive components.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & ACHIEVEMENTS -->
+    <section id="certs" class="fade-up">
+      <h3 class="section-title">Certifications & Achievements</h3>
+      <div class="card cert-grid">
+        <div class="cert">ISC2 — Security Basics</div>
+        <div class="cert">ISRO IIRS — Geo-Data & Cyber</div>
+        <div class="cert">Top 10 in 12th (School)</div>
+        <div class="cert">Participant — CyberForHer</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-up" aria-label="Contact">
+      <h3 class="section-title">Contact Me</h3>
+
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <form class="contact-form card" id="contactForm" onsubmit="return handleSubmit(event)">
+          <input class="input" id="name" type="text" placeholder="Your name" required />
+          <input class="input" id="email" type="email" placeholder="Your email" required />
+          <input class="input" id="subject" type="text" placeholder="Subject (e.g. Hiring / Internship / Project)" />
+          <textarea class="input" id="message" placeholder="Write your message..." rows="6" required></textarea>
+          <button class="submit" type="submit">Send Message</button>
+          <div id="formMsg" class="small" style="margin-top:8px;color:var(--accent3)"></div>
+        </form>
+
+        <div style="flex:1; min-width:260px;">
+          <div class="card">
+            <div style="font-weight:800">Get in touch</div>
+            <div class="kv" style="margin-top:8px">Email: <strong>monika@example.com</strong></div>
+            <div class="kv">Location: Gurugram, India</div>
+            <div style="margin-top:12px">
+              <div class="small">Social</div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <a href="#" class="icon-btn" aria-label="GitHub">GH</a>
+                <a href="#" class="icon-btn" aria-label="LinkedIn">IN</a>
+                <a href="#" class="icon-btn" aria-label="Instagram">IG</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <div style="font-weight:700">Quick Facts</div>
+            <div style="margin-top:8px" class="small">
+              • Open to internships & freelance • Available for remote work • Prefers collaborative teams
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© 2025 Monika Jangir — Built with ❤️ • Gen-Z UI</div>
+  </main>
+
+  <!-- small JS for interactivity -->
+  <script>
+    /* NAV: highlight active link on scroll */
+    const links = [...document.querySelectorAll('.nav-links a')];
+    const sections = links.map(l => document.querySelector(l.getAttribute('href')));
+
+    function onScroll(){
+      const y = window.scrollY + 120;
+      let idx = sections.findIndex((s,i) => {
+        if(!s) return false;
+        const top = s.offsetTop;
+        const bottom = top + s.offsetHeight;
+        return y >= top && y < bottom;
+      });
+      links.forEach(l => l.classList.remove('active'));
+      if(idx >= 0) links[idx].classList.add('active');
+      // fade-up reveal
+      document.querySelectorAll('.fade-up').forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 120) el.classList.add('show');
+      });
     }
-    .glow-title{
-      font-size:48px;
-      font-weight:700;
-      text-shadow:0 0 20px #7e2cff,0 0 30px #00e6c3;
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', () => {
+      onScroll();
+      startTypewriter();
+      initTilt();
+    });
+
+    /* Typewriter */
+    const phrases = ["Secure apps • Malware analysis • Backend & UI", "React • Node.js • Python", "Learning malware analysis & secure coding"];
+    let ti=0, ch=0, dir=1;
+    function startTypewriter(){
+      const el = document.getElementById('typewriter');
+      setInterval(()=>{
+        let txt = phrases[ti].slice(0, ch);
+        el.textContent = txt;
+        ch += dir;
+        if(ch > phrases[ti].length){ dir = -1; ch = phrases[ti].length; setTimeout(()=>{},600) }
+        if(ch <= 0){ dir = 1; ti = (ti+1) % phrases.length; }
+      }, 60);
     }
-    .glow-title span{
-      color:#00e6c3;
+
+    /* Download resume (front-end only) */
+    function downloadResume(){
+      // create a simple text resume as demo — replace with real file or server link
+      const resumeText = `
+Monika Jangir
+Cybersecurity • Web Developer
+
+Education:
+- B.Tech CSE (Cyber) — Gurugram University (CGPA 8.5)
+
+Experience:
+- Bluestock — SDE Intern (May-Aug 2025)
+- Muskurahat Foundation — Marketing Intern (Mar-May 2024)
+- Bharat Intern — Web Developer (Jun-Jul 2023)
+
+Skills: HTML, CSS, JS, React, Node.js, Python, Cybersecurity, Malware Analysis
+
+Contact: monika@example.com
+      `;
+      const blob = new Blob([resumeText], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Monika_Jangir_Resume.txt';
+      document.body.appendChild(a); a.click();
+      a.remove(); URL.revokeObjectURL(url);
     }
-    .subtitle{
-      font-size:20px;
-      opacity:0.8;
-      margin-top:10px;
+
+    /* Simple front-end "send" handler (no backend) */
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const msgEl = document.getElementById('formMsg');
+
+      if(!name || !email || !message){ msgEl.textContent = 'Please complete required fields.'; return false; }
+
+      // For demo show a success message and create mailto as fallback
+      msgEl.style.color = 'var(--accent2)';
+      msgEl.textContent = 'Message composed! Click to open your email client to send.';
+      const mailto = `mailto:monika@example.com?subject=${encodeURIComponent(subject||'Message from portfolio')}&body=${encodeURIComponent('Name: '+name+'\\nEmail: '+email+'\\n\\n'+message)}`;
+      setTimeout(()=>{ window.location.href = mailto }, 900);
+      return false;
     }
-    .hero-buttons{
-      margin-top:25px;
-      display:flex;
-      gap:20px;
-      justify-content:center;
+
+    /* Tiny tilt/parallax effect for .tilt elements */
+    function initTilt(){
+      const tiltEls = document.querySelectorAll('[data-tilt]');
+      tiltEls.forEach(el=>{
+        el.addEventListener('mousemove', e=>{
+          const rect = el.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rx = (y - 0.5) * 8; // rotateX
+          const ry = (x - 0.5) * -10; // rotateY
+          el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+        });
+        el.addEventListener('mouseleave', ()=> el.style.transform = 'none');
+      });
+
+      // subtle avatar zoom on mousemove
+      const avatar = document.querySelector('.avatar img');
+      if(avatar){
+        avatar.parentElement.addEventListener('mousemove', e=>{
+          avatar.style.transform = 'scale(1.04) translateZ(0)';
+        });
+        avatar.parentElement.addEventListener('mouseleave', e=>{
+          avatar.style.transform = 'scale(1) translateZ(0)';
+        });
+      }
     }
-    .btn{
-      padding:12px 25px;
-      border-radius:50px;
-      background:#7e2cff;
-      color:white;
-      text-decoration:none;
-      transition:.3s;
-      font-weight:600;
-    }
-    .btn:hover{
-      background:#00e6c3;
-      box-shadow:0 0 15px #00e6c3;
-    }
-    .btn-alt{
-      background:#00e6c3;
-    }
-    .btn-alt:hover{
-      background:#7e2cff;
-      box-shadow:0 0 15px #7e2cff;
-    }
-  </style>
+  </script>
 </body>
 </html>
