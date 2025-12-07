@@ -3,238 +3,218 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monika Jangir | GenZ Interactive Portfolio</title>
+  <title>Monika Jangir – Interactive Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
-      background: #0f0f0f;
-      color: white;
+      background: #0d0f1a;
+      color: #fff;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    /* HEADER */
-    header {
+    /* Navigation */
+    nav {
       width: 100%;
-      padding: 20px 50px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
-      top: 0;
-      z-index: 10;
       backdrop-filter: blur(10px);
       background: rgba(0,0,0,0.4);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 1000;
     }
 
-    header h2 {
+    nav .logo {
       font-size: 26px;
-      font-weight: 600;
-      background: linear-gradient(45deg, #ff00cc, #00eaff);
+      font-weight: 700;
+      background: linear-gradient(45deg, #7e2cff, #00e6c3);
       -webkit-background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
     }
 
-    nav a {
-      margin-left: 25px;
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: #00eaff;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      height: 100vh;
+    nav ul {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .hero img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid #00eaff;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      max-width: 500px;
-      opacity: 0.8;
-    }
-
-    .btn {
-      padding: 12px 30px;
-      background: #00eaff;
-      color: #000;
-      font-weight: bold;
-      display: inline-block;
-      margin-top: 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #ff00cc;
-      color: white;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 100px 50px;
-      min-height: 100vh;
-    }
-
-    h2.section-title {
-      font-size: 36px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    /* ABOUT */
-    .about-box {
-      max-width: 700px;
-      margin: auto;
-      font-size: 20px;
-      opacity: 0.9;
-      line-height: 1.6;
-    }
-
-    /* PROJECTS */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
 
-    .project-card {
-      padding: 20px;
-      background: #1a1a1a;
-      border-radius: 15px;
+    nav ul li {
+      list-style: none;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 10px;
       transition: 0.3s;
-      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .project-card:hover {
+    nav ul li a:hover, nav ul li a.active {
+      background: #7e2cff;
+      box-shadow: 0 0 15px #7e2cff;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 70px;
+      min-height: 100vh;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-text h1 {
+      font-size: 60px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7e2cff, #00e6c3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 20px;
+      max-width: 450px;
+      opacity: 0.9;
+    }
+
+    .cta-btn {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: #7e2cff;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      box-shadow: 0 0 20px #7e2cff;
+      transform: scale(1.08);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-box {
+      padding: 20px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s;
+    }
+
+    .skill-box:hover {
+      background: #00e6c3;
+      color: #000;
       transform: translateY(-10px);
-      border-color: #00eaff;
+      box-shadow: 0 0 20px #00e6c3;
     }
 
-    /* CONTACT */
+    /* Contact */
     .contact-box {
-      max-width: 600px;
-      margin: auto;
+      max-width: 550px;
+      background: rgba(255,255,255,0.06);
       padding: 30px;
-      background: #1b1b1b;
-      border-radius: 15px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(15px);
     }
 
-    .contact-box input, .contact-box textarea {
+    .contact-box input,
+    .contact-box textarea {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin-top: 10px;
       border: none;
       border-radius: 10px;
-      background: #2a2a2a;
+      background: rgba(255,255,255,0.2);
       color: white;
     }
 
     .contact-box button {
-      width: 100%;
-      padding: 12px;
-      background: #00eaff;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #7e2cff;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 600;
+      color: white;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     .contact-box button:hover {
-      background: #ff00cc;
-      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #7e2cff;
     }
 
   </style>
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-  <header>
-    <h2>Monika Jangir</h2>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <nav>
+    <div class="logo">Monika</div>
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <img src="https://via.placeholder.com/180" alt="Profile" />
-    <h1>Hi, I'm Monika 👋</h1>
-    <p>Cybersecurity Student • Web Developer • Malware Analyst • Creative Builder</p>
-    <a href="#about" class="btn">Explore My Profile</a>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section id="about">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-box">
-      I am a passionate Cybersecurity & Web Development student who loves building amazing web apps, analyzing malware, and creating meaningful digital products. I focus on modern UI, clean code, and GenZ design aesthetics.
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Hello, I'm Monika</h1>
+      <p>Cybersecurity Enthusiast • Web Developer • Malware Analysis Learner • Software Engineer</p>
+      <a href="#contact" class="cta-btn">Contact Me</a>
     </div>
   </section>
 
-  <!-- PROJECTS SECTION -->
-  <section id="projects">
-    <h2 class="section-title">Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>BiteBuddy App</h3>
-        <p>AI-based food recommendation application with community features.</p>
-      </div>
-      <div class="project-card">
-        <h3>Encrypted Messaging App</h3>
-        <p>Secure chat system with modern encryption features.</p>
-      </div>
-      <div class="project-card">
-        <h3>MindMapple</h3>
-        <p>Smart note-making system with streak calendar and advanced UX.</p>
-      </div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-box">HTML</div>
+      <div class="skill-box">CSS</div>
+      <div class="skill-box">JavaScript</div>
+      <div class="skill-box">React</div>
+      <div class="skill-box">Node.js</div>
+      <div class="skill-box">Python</div>
+      <div class="skill-box">C</div>
+      <div class="skill-box">Java</div>
+      <div class="skill-box">Cybersecurity</div>
+      <div class="skill-box">Malware Analysis</div>
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT -->
   <section id="contact">
-    <h2 class="section-title">Contact Me</h2>
+    <h2>Contact Me</h2>
     <div class="contact-box">
       <input type="text" placeholder="Your Name" />
       <input type="email" placeholder="Your Email" />
-      <textarea rows="4" placeholder="Your Message"></textarea>
+      <textarea rows="5" placeholder="Your Message"></textarea>
       <button>Send Message</button>
     </div>
   </section>
