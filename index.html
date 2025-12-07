@@ -3,27 +3,225 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dream Project</title>
+  <title>Monika Jangir – Interactive Resume</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
+      background: radial-gradient(circle at top, #1b1f3a, #0d0f1a);
+      color: #fff;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      scroll-behavior: smooth;
+    }
+
+    .resume-wrapper {
+      width: 100%;
+      max-width: 1150px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(0,0,0,0.7);
+      animation: fadeIn 1.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header */
+    .top-header {
+      background: linear-gradient(135deg, #7e2cff, #00e6c3, #004bff);
+      padding: 50px;
       text-align: center;
-      padding: 80px 20px;
+      animation: glow 4s infinite ease-in-out;
     }
-    h1 {
-      color: #333;
-      font-size: 2.5rem;
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #7e2cff; }
+      50% { box-shadow: 0 0 25px #00e6c3; }
+      100% { box-shadow: 0 0 10px #004bff; }
     }
-    p {
-      color: #555;
-      font-size: 1.2rem;
-      margin-top: 10px;
+
+    .top-header h1 {
+      font-size: 42px;
+      margin-top: 20px;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    .top-header p { font-size: 18px; opacity: 0.9; }
+
+    .section {
+      padding: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .section h2 {
+      font-size: 30px;
+      margin-bottom: 25px;
+      border-left: 6px solid #00e6c3;
+      padding-left: 15px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.07);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      transition: 0.4s;
+      backdrop-filter: blur(10px);
+    }
+    .card:hover {
+      transform: translateY(-7px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-box {
+      padding: 14px;
+      text-align: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      font-weight: bold;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .skill-box:hover {
+      background: #7e2cff;
+      border-color: #00e6c3;
+      box-shadow: 0 0 15px #7e2cff, 0 0 25px #00e6c3;
+      transform: scale(1.08);
+    }
+
+    .timeline {
+      border-left: 3px solid #7e2cff;
+      padding-left: 25px;
+    }
+
+    .time-item {
+      margin-bottom: 30px;
+      position: relative;
+      animation: slideLeft 1.1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes slideLeft {
+      0% { opacity: 0; transform: translateX(-20px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .time-item::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      background: #7e2cff;
+      border-radius: 50%;
+      position: absolute;
+      left: -31px;
+      top: 5px;
+      box-shadow: 0 0 10px #7e2cff;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
-  <h1>Hello from Dream Project 🎉</h1>
-  <p>Deployment is working successfully!</p>
+  <div class="resume-wrapper">
+
+    <!-- HEADER -->
+    <div class="top-header">
+      <h1>Monika Jangir</h1>
+      <p>Cybersecurity • Web Developer • Malware Analyst • Software Engineer</p>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <h2>About Me</h2>
+      <div class="card">
+        Enthusiastic Cybersecurity and Software Engineering student with experience in secure web development,
+        malware analysis fundamentals, backend APIs, and frontend UI/UX development.
+        Passionate about building innovative applications and strengthening cyber defense through hands-on projects.
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <h2>Technical Skills</h2>
+      <div class="skill-grid">
+        <div class="skill-box">HTML</div>
+        <div class="skill-box">CSS</div>
+        <div class="skill-box">JavaScript</div>
+        <div class="skill-box">React</div>
+        <div class="skill-box">Node.js</div>
+        <div class="skill-box">Python</div>
+        <div class="skill-box">C</div>
+        <div class="skill-box">Java</div>
+        <div class="skill-box">Cybersecurity</div>
+        <div class="skill-box">Malware Analysis</div>
+        <div class="skill-box">AWS Basics</div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="time-item">
+          <h3>Bluestock — SDE Intern (2025)</h3>
+          <p>Developed backend APIs, optimized performance, secure code, and database handling.</p>
+        </div>
+
+        <div class="time-item">
+          <h3>Bharat Intern — Web Developer (2023)</h3>
+          <p>Created responsive UI websites using HTML, CSS, JavaScript.</p>
+        </div>
+
+        <div class="time-item">
+          <h3>Muskurahat Foundation — Marketing Intern (2024)</h3>
+          <p>Handled campaigns, outreach, and digital marketing operations.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <h2>Education</h2>
+
+      <div class="card">
+        <strong>B.Tech CSE (Cyber Security)</strong> — Gurugram University  
+        <br> CGPA: <strong>8.5</strong>
+      </div>
+
+      <div class="card">
+        <strong>PG Diploma — Cyber Defense</strong>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 Monika Jangir — Interactive Resume</div>
+
+  </div>
 </body>
 </html>
